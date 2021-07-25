@@ -25,6 +25,7 @@ Technologies used in this portfolio include:
  * JS/ES6
  * React
  * NodeJS and npm packages
+    * apollo-server-express
     * bcrypt
     * express
     * jsonwebtoken
