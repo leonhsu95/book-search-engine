@@ -9,21 +9,21 @@ import { SAVE_BOOK } from '../utils/mutations'
 
 const SearchBooks = () => {
   const [saveBook, { error }] = useMutation(SAVE_BOOK);
-  // create state for holding returned google api data
+  // Create state to fetch  Google Books API
   const [searchedBooks, setSearchedBooks] = useState([]);
-  // create state for holding our search field data
+  // Create state so that what is typed in the search is saved as a search query parameter
   const [searchInput, setSearchInput] = useState('');
 
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // set up useEffect hook to save `savedBookIds` list to localStorage
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
   });
 
-  // create method to search for books and set state on form submit
+  // Created function to call Google Books API and output information
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,12 +56,12 @@ const SearchBooks = () => {
     }
   };
 
-  // create function to handle saving a book to our database
+  // Create function to save books to localstorage array when clicked
   const handleSaveBook = async (bookId) => {
-    // find the book in `searchedBooks` state by the matching id
+    // Find the book in `searchedBooks` state by the matching id
     const bookInput = searchedBooks.find((book) => book.bookId === bookId);
-    console.log(bookInput);
-    // get token
+
+    // Create Token to Authorise login
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -69,7 +69,7 @@ const SearchBooks = () => {
     }
 
     try {
-      // use SAVE_BOOK mutation
+      // use SAVE_BOOK mutation and pass bookInput string as updated parameters
       await saveBook({
         variables: { input: bookInput }
       });
@@ -127,7 +127,7 @@ const SearchBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>
-                    <a href={book.link}>
+                    <a href={book.link} target="_blank">
                       {book.title}
                     </a>
                   </Card.Title>

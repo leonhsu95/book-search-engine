@@ -12,7 +12,6 @@ const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || data?.user || {};
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -26,6 +25,7 @@ const SavedBooks = () => {
     );
   }
 
+  // Create function that uses Mongo _id for bookId value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -34,6 +34,7 @@ const SavedBooks = () => {
     }
 
     try {
+      // use REMOVE_BOOK mutation
       await removeBook({
         variables: { bookId }
       });
@@ -41,13 +42,16 @@ const SavedBooks = () => {
       if (error) {
         throw new Error('something went wrong!');
       }
-
+      
+      // and from localstorage, delete the information
+      // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
       console.error(err);
     }
   };
 
+  // Loading inforamation 
   if (loading) {
     return <h2>LOADING...</h2>;
   }
@@ -72,7 +76,7 @@ const SavedBooks = () => {
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>
-                    <a href={book.link}>
+                    <a href={book.link} target="_blank">
                       {book.title}
                     </a>
                   </Card.Title>

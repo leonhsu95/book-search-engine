@@ -4,16 +4,17 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
-// import { createUser } from '../utils/API';
+// import { createUser } from '../utils/API'; // Not using RESTfulAPI
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
   const [addUser] = useMutation(ADD_USER); 
-  // set initial form state
+  // Clear all initial states...
+  // So user inputs data with blank form
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
+  // Regex doesn't already fire before user inputs data
   const [validated] = useState(false);
-  // set state for alert
+  // Doesn't notify error before user inputs data
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
@@ -24,7 +25,6 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
