@@ -1,5 +1,5 @@
 # Book Search Engine
-You can view my React Portfolio here: [Book Search Engine]()
+You can view my React Portfolio here: [Book Search Engine](https://book-search-engine-lh.herokuapp.com/)
 
 ## Table of Contents
 
@@ -36,6 +36,7 @@ Technologies used in this portfolio include:
     * apollo-server-express version "^2.25.2"
         * The app won't work with the latest version due to how it handles middleware functions differently. Install version 2.x...
     * bcrypt
+    * dotenv
     * express
     * jsonwebtoken
     * mongoose
