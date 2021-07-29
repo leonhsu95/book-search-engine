@@ -1,5 +1,5 @@
 # Book Search Engine
-You can view my React Portfolio here: [Book Search Engine](https://book-search-engine-lh.herokuapp.com/)
+You can view my Book Search Portfolio here: [Book Search Engine](https://book-search-engine-lh.herokuapp.com/)
 
 ## Table of Contents
 
@@ -30,7 +30,6 @@ Technologies used in this portfolio include:
         * Run npm i concurrently beforenpm run install
     * Client
         * boostrap
-        * graphql
         * jwt-decode
     * Server 
     * apollo-server-express version "^2.25.2"
@@ -38,6 +37,7 @@ Technologies used in this portfolio include:
     * bcrypt
     * dotenv
     * express
+    * graphql
     * jsonwebtoken
     * mongoose
     * nodemon
